@@ -21,9 +21,12 @@ public class Login extends javax.swing.JFrame {
     Main mn=new Main();
     public Login() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(this);
     }
-
+    static String nombre="";
+    public static String getNombre(){
+        return nombre;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,11 +84,18 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(met.existeCorreo(jCorreo.getText()) && jContraseña.getText().equals("admin")){
-            mn.setVisible(true);
-            this.dispose();
+        if(met.existeCorreo(jCorreo.getText())){
+            String contra=met.contraseñaEmpleado(jCorreo.getText());
+            if(jContraseña.getText().equals(contra)){
+                nombre=met.nombreDeCorreo(jCorreo.getText());
+                mn.setVisible(true);
+                this.setVisible(false);
+                System.out.println(nombre);
+            }else{
+                JOptionPane.showMessageDialog(null, "Correo o contraseña incorrectos");
+            }
         }else{
-            JOptionPane.showMessageDialog(null, "Correo o contraseña incorrectos");
+            JOptionPane.showMessageDialog(null, "El correo no existe");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

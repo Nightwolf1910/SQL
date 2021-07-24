@@ -18,8 +18,8 @@ public class NuevoEmpleado extends javax.swing.JFrame {
     /**
      * Creates new form NuevoEmpleado
      */
-    ConexionBD coneccion=new ConexionBD();
-    MetodosSQL met=new MetodosSQL();
+    ConexionBD coneccion;
+    MetodosSQL met;
     public NuevoEmpleado() {
         initComponents();
         this.setLocationRelativeTo(this);

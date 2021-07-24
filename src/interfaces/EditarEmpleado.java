@@ -19,8 +19,8 @@ public class EditarEmpleado extends javax.swing.JFrame {
     /**
      * Creates new form NuevoEmpleado
      */
-    ConexionBD coneccion=new ConexionBD();
-    MetodosSQL met=new MetodosSQL();
+    ConexionBD coneccion;
+    MetodosSQL met;
     public EditarEmpleado() {
         initComponents();
         this.setLocationRelativeTo(this);
