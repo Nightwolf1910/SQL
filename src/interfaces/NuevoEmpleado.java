@@ -72,165 +72,218 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         bGuardar1 = new javax.swing.JButton();
         jcontraseña = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Nuevo Empleado");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 19, 123, -1));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Ingrese datos del nuevo empleado:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 260, -1));
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Apellido:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, 33));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, 33));
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Celular:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 111, -1, 33));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, 33));
 
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 60, 55, 33));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 55, 33));
 
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("DNI:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 111, 34, 33));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 34, 33));
 
+        jLabel6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Sexo:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 156, 46, 33));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 46, 33));
 
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Area:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 348, 40, 33));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 40, 33));
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Fecha de naciemiento:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 156, -1, 33));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, 33));
 
         jDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jDniActionPerformed(evt);
             }
         });
-        getContentPane().add(jDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 115, 117, -1));
+        getContentPane().add(jDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 117, -1));
 
         jCelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCelularActionPerformed(evt);
             }
         });
-        getContentPane().add(jCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 111, 158, -1));
+        getContentPane().add(jCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 158, -1));
 
         jNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(jNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 64, 117, -1));
+        getContentPane().add(jNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 117, -1));
 
         jApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jApellidoActionPerformed(evt);
             }
         });
-        getContentPane().add(jApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 64, 154, -1));
+        getContentPane().add(jApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 154, -1));
 
         buttonGroup1.add(rbHombre);
+        rbHombre.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        rbHombre.setForeground(new java.awt.Color(255, 255, 255));
         rbHombre.setText("Hombre");
-        getContentPane().add(rbHombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 158, 94, -1));
+        getContentPane().add(rbHombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 94, -1));
 
         buttonGroup1.add(rbFemenino);
+        rbFemenino.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        rbFemenino.setForeground(new java.awt.Color(255, 255, 255));
         rbFemenino.setText("Mujer");
-        getContentPane().add(rbFemenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 158, -1, -1));
+        getContentPane().add(rbFemenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
 
         cbArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tecnologias de la informacion", "Marketing", "Finanzas" }));
-        getContentPane().add(cbArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 351, -1, -1));
-        getContentPane().add(dcNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 156, 168, -1));
+        getContentPane().add(cbArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, -1, -1));
+        getContentPane().add(dcNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 168, -1));
 
+        bGuardar.setBackground(new java.awt.Color(255, 255, 255));
+        bGuardar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        bGuardar.setForeground(new java.awt.Color(0, 0, 0));
         bGuardar.setText("Guardar empleado");
         bGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(bGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, -1, -1));
+        getContentPane().add(bGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 490, 180, 40));
 
+        jLabel9.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Seguro:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 348, 55, 33));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 55, 33));
 
         cbSeguro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INTERSEGURO", "LA POSITIVA", "RIMAC SEGUROS" }));
-        getContentPane().add(cbSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 351, 179, -1));
+        getContentPane().add(cbSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 179, -1));
 
+        jLabel10.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Puesto:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 270, 55, 33));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 55, 33));
 
         cbPuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Director Ejecutivo", "Director de Operaciones", "Director Comercial", "Director Marketing", "Director de Recursos Humanos", "Customer Success", "Director Financiero" }));
-        getContentPane().add(cbPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 273, 197, -1));
+        getContentPane().add(cbPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 197, -1));
 
+        jLabel11.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Trabajo:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 55, 33));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 55, 33));
 
         cbTrabajo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpidador", "Tecnico", "Programador", "Economista", "Cajero", "Reponedor" }));
-        getContentPane().add(cbTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 273, 179, -1));
+        getContentPane().add(cbTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 179, -1));
 
+        jLabel12.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Contrato:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 309, 55, 33));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 55, 33));
 
         cbContrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Temporal" }));
-        getContentPane().add(cbContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 312, 197, -1));
+        getContentPane().add(cbContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 197, -1));
 
+        jLabel13.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Prueba:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 309, 55, 33));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 55, 33));
 
         cbPrueba.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VIRTUAL" }));
-        getContentPane().add(cbPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 312, 179, -1));
+        getContentPane().add(cbPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, 179, -1));
 
         jDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jDireccionActionPerformed(evt);
             }
         });
-        getContentPane().add(jDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 196, 117, -1));
+        getContentPane().add(jDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 117, -1));
 
+        jLabel14.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Direccion:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 192, 73, 33));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 73, 33));
 
         jCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCategoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(jCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 235, 117, -1));
+        getContentPane().add(jCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 117, -1));
 
+        jLabel15.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Categoria laboral:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, -1, 33));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, -1, 33));
 
         jSueldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSueldoActionPerformed(evt);
             }
         });
-        getContentPane().add(jSueldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 235, 117, -1));
+        getContentPane().add(jSueldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 117, -1));
 
+        jLabel16.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Sueldo:");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 231, 55, 33));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 55, 33));
 
+        bGuardar1.setBackground(new java.awt.Color(255, 255, 255));
+        bGuardar1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        bGuardar1.setForeground(new java.awt.Color(0, 0, 0));
         bGuardar1.setText("Regresar");
         bGuardar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bGuardar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(bGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
+        getContentPane().add(bGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 490, 120, 40));
 
         jcontraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcontraseñaActionPerformed(evt);
             }
         });
-        getContentPane().add(jcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 196, 117, -1));
+        getContentPane().add(jcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 117, -1));
 
+        jLabel18.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Contraseña:");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, 33));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, 33));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/15-Presentation-Background-Examples37.png"))); // NOI18N
-        jLabel17.setText("jLabel17");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 450));
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo-mallplaza.png"))); // NOI18N
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Datos del nuevo empleado");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 200, -1));
+
+        jPanel3.setBackground(new java.awt.Color(196, 64, 64));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -363,9 +416,10 @@ public class NuevoEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -374,6 +428,7 @@ public class NuevoEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jNombre;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jSueldo;
     private javax.swing.JTextField jcontraseña;
     private javax.swing.JRadioButton rbFemenino;

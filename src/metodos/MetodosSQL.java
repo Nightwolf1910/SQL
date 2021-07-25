@@ -73,6 +73,62 @@ public class MetodosSQL {
             System.out.println(e.getMessage());
         }
     }
+    public void buscarHistorial(DefaultTableModel modelo){
+        if(modelo.getRowCount()>0){
+            modelo.setNumRows(0);
+        }
+        String[] fila=new String[5];
+        SimpleDateFormat formato=new SimpleDateFormat("dd/MM/YYYY");
+        sentencia_mostrar=("SELECT E.NOMBRE || ' ' ||E.APELLIDO AS NOMBRE,"
+                + " L.FECHA_LOG, A.NOMBRE AS ANTES, D.NOMBRE AS DESPUES, L.MOTIVO\n" +
+            "FROM EMPLEADO E, AREA_LOG L, AREA A, AREA D\n" +
+            "WHERE L.DNI = E.DNI\n" +
+            "AND A.AREA_ID = L.AREA_ANTES\n" +
+            "AND D.AREA_ID = L.AREA_DESPUES");
+        try {
+            conexion=ConexionBD.conectarBaseDatos();
+            sentencia_preparada=conexion.prepareStatement(sentencia_mostrar);
+            resultado=sentencia_preparada.executeQuery();
+            while(resultado.next()){
+                fila[0]=resultado.getString(1);
+                fila[1]=formato.format(resultado.getDate(2));
+                fila[2]=resultado.getString(3);
+                fila[3]=resultado.getString(4);
+                fila[4]=resultado.getString(5);
+                modelo.addRow(fila);
+            }
+            conexion.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void HistorialFiltrado(DefaultTableModel modelo,String nombre){
+        if(modelo.getRowCount()>0){
+            modelo.setNumRows(0);
+        }
+        String[] fila=new String[9];
+        SimpleDateFormat formato=new SimpleDateFormat("dd/MM/YYYY");
+        sentencia_mostrar=("SELECT E.NOMBRE || ' ' ||E.APELLIDO AS NOMBRE, L.FECHA_LOG, "
+                + "A.NOMBRE AS ANTES, D.NOMBRE AS DESPUES, L.MOTIVO FROM EMPLEADO E, AREA_LOG L, AREA A, AREA D\n" +
+            "WHERE L.DNI = E.DNI AND A.AREA_ID = L.AREA_ANTES AND D.AREA_ID = L.AREA_DESPUES"
+                + " AND (E.NOMBRE LIKE '%"+nombre+"%' OR E.APELLIDO LIKE '%"+nombre+"%')");
+        try {
+            conexion=ConexionBD.conectarBaseDatos();
+            sentencia_preparada=conexion.prepareStatement(sentencia_mostrar);
+            resultado=sentencia_preparada.executeQuery();
+            while(resultado.next()){
+                fila[0]=resultado.getString(1);
+                fila[1]=formato.format(resultado.getDate(2));
+                fila[2]=resultado.getString(3);
+                fila[3]=resultado.getString(4);
+                fila[4]=resultado.getString(5);
+                modelo.addRow(fila);
+            }
+            conexion.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
     public void guardarEmpleado(int dni,String nombre,String apellido,String sexo,
             int celular,String direccion,String categoria,int sueldo,
             String nacimiento,JComboBox puesto,JComboBox area,JComboBox trabajo,
@@ -362,6 +418,23 @@ public class MetodosSQL {
             System.out.println(e.getMessage());
         }
     }
+    public void cambioAreaLog(String area,int dni,String motivo){
+        try {
+            conexion=ConexionBD.conectarBaseDatos();
+            sentencia_mostrar=("update empleado set AREA_ID='"+area+"' where dni="+dni+"");
+            sentencia_preparada=conexion.prepareStatement(sentencia_mostrar);
+            sentencia_preparada.executeQuery();
+            conexion.close();
+            conexion=ConexionBD.conectarBaseDatos();
+            sentencia_mostrar=("UPDATE AREA_LOG SET MOTIVO='"+motivo+"' "
+                    + "WHERE LOG_ID=(SELECT MAX(LOG_ID) FROM AREA_LOG WHERE DNI="+dni+" GROUP BY DNI)");
+            sentencia_preparada=conexion.prepareStatement(sentencia_mostrar);
+            sentencia_preparada.executeQuery();
+            conexion.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
     public String nombreDeCorreo(String correo){
         String nombre="";
         try {
@@ -425,38 +498,24 @@ public class MetodosSQL {
         }
     }
     //*******************************PLSQL*****************************
-    public void cambioArea(){
-        sentencia_mostrar=("CREATE SEQUENCE CAMBIO_SEQUENCE --Crea valores desde 1 a mas\n" +
-            "INCREMENT BY 1\n" +
-            "START WITH 1 ORDER;\n" +
-            "\n" +
-            "CREATE OR REPLACE TRIGGER INDEX_CAMBIOS\n" +
-            "/*intercepta el insert a la tabla area log\n" +
-            "y reemplaza el log_id por la sequencia cambio_sequence*/\n" +
-            "BEFORE INSERT ON AREA_LOG \n" +
-            "FOR EACH ROW \n" +
-            "BEGIN\n" +
-            "  :NEW.LOG_ID:=CAMBIO_SEQUENCE.NEXTVAL;\n" +
-            "END;\n" +
-            "\n" +
-            "CREATE OR REPLACE TRIGGER CAMBIO_AREA\n" +
-            "/*Cuando se actualiza el area id se inserta un log con el cambio \n" +
-            "y un motivo default*/\n" +
-            "AFTER UPDATE ON EMPLEADO\n" +
-            "FOR EACH ROW\n" +
-            "BEGIN\n" +
-            "    CASE\n" +
-            "        WHEN UPDATING('AREA_ID') THEN --El 0 dentro del insert sera reemplazado por INDEX_CAMBIOS.\n" +
-            "            INSERT INTO AREA_LOG VALUES(:OLD.DNI,0,SYSDATE,:OLD.AREA_ID,:NEW.AREA_ID,'DEFAULT');\n" +
-            "    END CASE;\n" +
-            "END;");
-        try {
-            conexion=ConexionBD.conectarBaseDatos();
-            sentencia_preparada=conexion.prepareStatement(sentencia_mostrar);
-            sentencia_preparada.execute();
-            sentencia_preparada.close();
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
+    /*private void trigger_alter(Connection con, String flag) throws Exception
+{
+    Query query = new Query(con);
+    String selectSql = "select table_owner, trigger_name from user_triggers";
+
+    Statement trgStmt = con.createStatement();
+
+    query.executeQuery(selectSql);
+     while(query.next()) {
+        int i = 0;
+        String table_owner = query.getColValue("table_owner");
+        String trigger_name = query.getColValue("trigger_name");
+        String triggerSql = "ALTER TRIGGER " + table_owner + "." + trigger_name + " "+ flag  ;
+        System.out.println( triggerSql);
+        trgStmt.addBatch(triggerSql);
     }
+
+    trgStmt.executeBatch();
+    log_obj.FmtAndLogMsg("All triggers have been " + flag+ "D");
+}*/
 }
