@@ -6,6 +6,7 @@
 package interfaces;
 
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import metodos.ConexionBD;
 import metodos.MetodosSQL;
 
@@ -18,8 +19,8 @@ public class NuevoEmpleado extends javax.swing.JFrame {
     /**
      * Creates new form NuevoEmpleado
      */
-    ConexionBD coneccion;
-    MetodosSQL met;
+    ConexionBD coneccion=new ConexionBD();
+    MetodosSQL met=new MetodosSQL();
     public NuevoEmpleado() {
         initComponents();
         this.setLocationRelativeTo(this);
@@ -69,6 +70,8 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         jSueldo = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         bGuardar1 = new javax.swing.JButton();
+        jcontraseña = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -148,10 +151,10 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         getContentPane().add(bGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, -1, -1));
 
         jLabel9.setText("Seguro:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 309, 55, 33));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 348, 55, 33));
 
         cbSeguro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INTERSEGURO", "LA POSITIVA", "RIMAC SEGUROS" }));
-        getContentPane().add(cbSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 312, 179, -1));
+        getContentPane().add(cbSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 351, 179, -1));
 
         jLabel10.setText("Puesto:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 270, 55, 33));
@@ -160,10 +163,10 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         getContentPane().add(cbPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 273, 197, -1));
 
         jLabel11.setText("Trabajo:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 231, 55, 33));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 55, 33));
 
         cbTrabajo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpidador", "Tecnico", "Programador", "Economista", "Cajero", "Reponedor" }));
-        getContentPane().add(cbTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 234, 179, -1));
+        getContentPane().add(cbTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 273, 179, -1));
 
         jLabel12.setText("Contrato:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 309, 55, 33));
@@ -172,10 +175,10 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         getContentPane().add(cbContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 312, 197, -1));
 
         jLabel13.setText("Prueba:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 270, 55, 33));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 309, 55, 33));
 
         cbPrueba.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VIRTUAL" }));
-        getContentPane().add(cbPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 273, 179, -1));
+        getContentPane().add(cbPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 312, 179, -1));
 
         jDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,10 +195,10 @@ public class NuevoEmpleado extends javax.swing.JFrame {
                 jCategoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(jCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 196, 117, -1));
+        getContentPane().add(jCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 235, 117, -1));
 
         jLabel15.setText("Categoria laboral:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 192, -1, 33));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, -1, 33));
 
         jSueldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,9 +218,19 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         });
         getContentPane().add(bGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
 
+        jcontraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcontraseñaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 196, 117, -1));
+
+        jLabel18.setText("Contraseña:");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, 33));
+
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/15-Presentation-Background-Examples37.png"))); // NOI18N
         jLabel17.setText("jLabel17");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 660, 450));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -246,19 +259,29 @@ public class NuevoEmpleado extends javax.swing.JFrame {
         }else if(rbFemenino.isSelected()){
             sexo="F";
         }
-        int r=met.guardarEmpleado(Integer.parseInt(jDni.getText()), jNombre.getText(),
+        if(jDni.getText().isEmpty()||jNombre.getText().isEmpty()||jApellido.getText().isEmpty()
+                ||sexo==""||jSueldo.getText().isEmpty()||jcontraseña.getText().isEmpty()
+                ||dcNacimiento.getDate()==null){
+            JOptionPane.showMessageDialog(null, "Llene los campos necesarios");
+        }else{
+            met.guardarEmpleado(Integer.parseInt(jDni.getText()), jNombre.getText(),
                 jApellido.getText(), sexo, Integer.parseInt(jCelular.getText()),
                 jDireccion.getText(),jCategoria.getText(),Integer.parseInt(jSueldo.getText()),
                 formato.format(dcNacimiento.getDate()), cbPuesto,cbArea, cbTrabajo,
-                cbContrato, cbSeguro,cbPrueba);
-        jDni.setText("");
-        jNombre.setText("");
-        jApellido.setText("");
-        jCelular.setText("");
-        jDireccion.setText("");
-        jCategoria.setText("");
-        jSueldo.setText("");
-        dcNacimiento.setDate(null);
+                cbContrato, cbSeguro,cbPrueba,jcontraseña.getText());
+            jDni.setText("");
+            jNombre.setText("");
+            jApellido.setText("");
+            jCelular.setText("");
+            jDireccion.setText("");
+            jCategoria.setText("");
+            jSueldo.setText("");
+            dcNacimiento.setDate(null);
+            jcontraseña.setText("");
+            rbFemenino.setSelected(false);
+            rbHombre.setSelected(false);
+            JOptionPane.showMessageDialog(null, "Empleado ingresado");
+        }
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void jDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDireccionActionPerformed
@@ -276,6 +299,10 @@ public class NuevoEmpleado extends javax.swing.JFrame {
     private void bGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardar1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_bGuardar1ActionPerformed
+
+    private void jcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcontraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcontraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,6 +364,7 @@ public class NuevoEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -347,6 +375,7 @@ public class NuevoEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jNombre;
     private javax.swing.JTextField jSueldo;
+    private javax.swing.JTextField jcontraseña;
     private javax.swing.JRadioButton rbFemenino;
     private javax.swing.JRadioButton rbHombre;
     // End of variables declaration//GEN-END:variables

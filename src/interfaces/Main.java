@@ -8,8 +8,6 @@ package interfaces;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import metodos.MetodosSQL;
-import interfaces.Login;
-
 /**
  *
  * @author Alvaro
@@ -22,14 +20,11 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
-        System.out.println(Login.getNombre());
-        jlBienvenido.setText("Bienvenido, "+Login.getNombre());
         modelo.addColumn("DNI");
         modelo.addColumn("Nombre");
         modelo.addColumn("Edad");
         modelo.addColumn("Sexo");
         modelo.addColumn("Celular");
-        modelo.addColumn("Correo");
         modelo.addColumn("Sueldo");
         modelo.addColumn("Area");
         modelo.addColumn("Trabajo");
@@ -133,7 +128,7 @@ public class Main extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, -1));
-        getContentPane().add(jEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 188, -1));
+        getContentPane().add(jEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 65, 188, -1));
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
 
@@ -153,11 +148,11 @@ public class Main extends javax.swing.JFrame {
 
         jlBienvenido.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jlBienvenido.setForeground(new java.awt.Color(0, 0, 0));
-        getContentPane().add(jlBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 10, 280, 40));
+        getContentPane().add(jlBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, 280, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/15-Presentation-Background-Examples37.png"))); // NOI18N
         jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1260, 530));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 0, 1320, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,7 +238,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel jlBienvenido;
+    public javax.swing.JLabel jlBienvenido;
     private javax.swing.JTable jtTabla;
     // End of variables declaration//GEN-END:variables
 }

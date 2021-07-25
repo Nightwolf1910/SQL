@@ -47,9 +47,9 @@ public class MetodosSQL {
         if(modelo.getRowCount()>0){
             modelo.setNumRows(0);
         }
-        String[] fila=new String[10];
+        String[] fila=new String[9];
         sentencia_mostrar=("SELECT E.DNI,E.NOMBRE || ' ' ||E.APELLIDO AS NOMBRE,TRUNC(MONTHS_BETWEEN(SYSDATE, E.FECHA_NAC)/12) AS EDAD,\n" +
-            "E.SEXO,E.CELULAR,E.CORREO,E.SUELDO,A.NOMBRE AS AREA,T.ROL,S.ASEGURADORA\n" +
+            "E.SEXO,E.CELULAR,E.SUELDO,A.NOMBRE AS AREA,T.ROL,S.ASEGURADORA\n" +
             "FROM EMPLEADO E, AREA A, TRABAJO T, SEGURO S\n" +
             "WHERE A.AREA_ID=E.AREA_ID AND T.TRABAJO_ID=E.TRABAJO_ID AND S.SEGURO_ID=E.SEGURO_ID");
         try {
@@ -66,7 +66,6 @@ public class MetodosSQL {
                 fila[6]=resultado.getString(7);
                 fila[7]=resultado.getString(8);
                 fila[8]=resultado.getString(9);
-                fila[9]=resultado.getString(10);
                 modelo.addRow(fila);
             }
             conexion.close();
@@ -74,10 +73,10 @@ public class MetodosSQL {
             System.out.println(e.getMessage());
         }
     }
-    public int guardarEmpleado(int dni,String nombre,String apellido,String sexo,
+    public void guardarEmpleado(int dni,String nombre,String apellido,String sexo,
             int celular,String direccion,String categoria,int sueldo,
             String nacimiento,JComboBox puesto,JComboBox area,JComboBox trabajo,
-            JComboBox contrato,JComboBox seguro,JComboBox prueba){
+            JComboBox contrato,JComboBox seguro,JComboBox prueba,String contraseña){
         if(puesto.getSelectedItem().equals("Director Ejecutivo")){
                 pues="CEO";
         }else if(puesto.getSelectedItem().equals("Director de Operaciones")){
@@ -129,47 +128,46 @@ public class MetodosSQL {
         Date fecha=new Date();
         SimpleDateFormat formato=new SimpleDateFormat("dd/MM/YYYY");
         
-        String sentencia_guardar=("INSERT INTO empleado(dni,nro_empleado,nombre,apellido,correo,"
+        String sentencia_guardar=("INSERT INTO empleado(dni,nombre,apellido,correo,"
                 + "sexo,celular,direccion,categorial_laboral,sueldo,fecha_nac,fecha_cont,dni_jefe,"
-                + "puesto_id,area_id,trabajo_id,contrato_id,seguro_id,prueba_id) VALUES(?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                + "puesto_id,area_id,trabajo_id,contrato_id,seguro_id,prueba_id,contraseña) VALUES(?,?,?,"
+                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         try {
             conexion=ConexionBD.conectarBaseDatos();
             sentencia_preparada=conexion.prepareStatement(sentencia_guardar);
             sentencia_preparada.setInt(1, dni);
-            sentencia_preparada.setInt(2, modelo.getRowCount()+1);
-            sentencia_preparada.setString(3, nombre);
-            sentencia_preparada.setString(4, apellido);
-            sentencia_preparada.setString(5, nombre+"."+apellido+"@MALLPLAZA.COM");
-            sentencia_preparada.setString(6, sexo);
-            sentencia_preparada.setInt(7, celular);
-            sentencia_preparada.setString(8, direccion);
-            sentencia_preparada.setString(9, categoria);
-            sentencia_preparada.setInt(10, sueldo);
-            sentencia_preparada.setString(11, nacimiento);
-            sentencia_preparada.setString(12, formato.format(fecha));
-            sentencia_preparada.setInt(13, 15616535);
-            sentencia_preparada.setString(14, pues);
-            sentencia_preparada.setString(15, ar);
-            sentencia_preparada.setString(16, trab);
-            sentencia_preparada.setString(17, cont);
-            sentencia_preparada.setString(18, segu);
-            sentencia_preparada.setInt(19, pru);
+            sentencia_preparada.setString(2, nombre);
+            sentencia_preparada.setString(3, apellido);
+            sentencia_preparada.setString(4, nombre+"."+apellido+"@mallplaza.com");
+            sentencia_preparada.setString(5, sexo);
+            sentencia_preparada.setInt(6, celular);
+            sentencia_preparada.setString(7, direccion);
+            sentencia_preparada.setString(8, categoria);
+            sentencia_preparada.setInt(9, sueldo);
+            sentencia_preparada.setString(10, nacimiento);
+            sentencia_preparada.setString(11, formato.format(fecha));
+            sentencia_preparada.setInt(12, 15616535);
+            sentencia_preparada.setString(13, pues);
+            sentencia_preparada.setString(14, ar);
+            sentencia_preparada.setString(15, trab);
+            sentencia_preparada.setString(16, cont);
+            sentencia_preparada.setString(17, segu);
+            sentencia_preparada.setInt(18, pru);
+            sentencia_preparada.setString(19, contraseña);
             resultadoNumero=sentencia_preparada.executeUpdate();
             sentencia_preparada.close();
             
         } catch (Exception e) {
             System.out.println(e);
         }
-        return resultadoNumero;
     }
     public void EmpleadosFiltrados(DefaultTableModel modelo,String nombre){
         if(modelo.getRowCount()>0){
             modelo.setNumRows(0);
         }
-        String[] fila=new String[10];
+        String[] fila=new String[9];
         sentencia_mostrar=("SELECT E.DNI,E.NOMBRE || ' ' ||E.APELLIDO AS NOMBRE,TRUNC(MONTHS_BETWEEN(SYSDATE, E.FECHA_NAC)/12) AS EDAD,\n" +
-            "E.SEXO,E.CELULAR,E.CORREO,E.SUELDO,A.NOMBRE AS AREA,T.ROL,S.ASEGURADORA\n" +
+            "E.SEXO,E.CELULAR,E.SUELDO,A.NOMBRE AS AREA,T.ROL,S.ASEGURADORA\n" +
             "FROM EMPLEADO E, AREA A, TRABAJO T, SEGURO S\n" +
             "WHERE A.AREA_ID=E.AREA_ID AND T.TRABAJO_ID=E.TRABAJO_ID AND S.SEGURO_ID=E.SEGURO_ID"
                 + " AND (E.NOMBRE LIKE '%"+nombre+"%' OR E.APELLIDO LIKE '%"+nombre+"%')");
@@ -187,7 +185,6 @@ public class MetodosSQL {
                 fila[6]=resultado.getString(7);
                 fila[7]=resultado.getString(8);
                 fila[8]=resultado.getString(9);
-                fila[9]=resultado.getString(10);
                 modelo.addRow(fila);
             }
             conexion.close();
@@ -198,10 +195,10 @@ public class MetodosSQL {
     public void mostrarEmpleado(String nombreCom,JTextField dni,JTextField nombre,JTextField apellido,
             JRadioButton masculino,JRadioButton femenino,JTextField celular,JTextField direccion,JTextField categoria,
             JTextField sueldo,JDateChooser nacimiento,JComboBox puesto,JComboBox area,JComboBox trabajo,
-            JComboBox contrato,JComboBox seguro,JComboBox prueba){
+            JComboBox contrato,JComboBox seguro,JComboBox prueba,JTextField contraseña){
         sentencia_mostrar=("SELECT DNI,NOMBRE,APELLIDO,CELULAR,SEXO,DIRECCION,"
                 + "CATEGORIAL_LABORAL,SUELDO,FECHA_NAC,PUESTO_ID,AREA_ID,TRABAJO_ID,"
-                + "CONTRATO_ID,SEGURO_ID,PRUEBA_ID FROM EMPLEADO "
+                + "CONTRATO_ID,SEGURO_ID,PRUEBA_ID,CONTRASEÑA FROM EMPLEADO "
                 + "WHERE (NOMBRE || ' ' ||APELLIDO)='"+nombreCom+"'");
         try {
             conexion=ConexionBD.conectarBaseDatos();
@@ -223,61 +220,60 @@ public class MetodosSQL {
                 cont=resultado.getString(13);
                 segu=resultado.getString(14);
                 pru=resultado.getInt(15);
+                contraseña.setText(resultado.getString(16));
             }
             conexion.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        if(sex=="M"){
+        if(sex.equals("M")){
             masculino.setSelected(true);
-            femenino.setSelected(false);
-        }else if(sex=="F"){
-            masculino.setSelected(false);
+        }else if(sex.equals("F")){
             femenino.setSelected(true);
         }
-        if(pues=="CEO"){
+        if(pues.equals("CEO")){
                 puesto.setSelectedItem("Director Ejecutivo");
-        }else if(pues=="COO"){
+        }else if(pues.equals("COO")){
                 puesto.setSelectedItem("Director de Operaciones");
-        }else if(pues=="CSO"){
+        }else if(pues.equals("CSO")){
                 puesto.setSelectedItem("Director Comercial");
-        }else if(pues=="CMO"){
+        }else if(pues.equals("CMO")){
                 puesto.setSelectedItem("Director Marketing");
-        }else if(pues=="CHRO"){
+        }else if(pues.equals("CHRO")){
                 puesto.setSelectedItem("Director de Recursos Humanos");
-        }else if(pues=="CS"){
+        }else if(pues.equals("CS")){
                 puesto.setSelectedItem("Customer Success");
-        }else if(pues=="CFO"){
+        }else if(pues.equals("CFO")){
                 puesto.setSelectedItem("Director Financiero");
         }
-        if(ar=="TI"){
+        if(ar.equals("TI")){
                 area.setSelectedItem("Tecnologias de la informacion");
-        }else if(ar=="MK"){
+        }else if(ar.equals("MK")){
                 area.setSelectedItem("Marketing");
-        }else if(ar=="FN"){
+        }else if(ar.equals("FN")){
                 area.setSelectedItem("Finanzas");
         }
-        if(trab=="LIM"){
+        if(trab.equals("LIM")){
                 trabajo.setSelectedItem("Limpidador");
-        }else if(trab=="TEC"){
+        }else if(trab.equals("TEC")){
                 trabajo.setSelectedItem("Tecnico");;
-        }else if(trab=="PRO"){
+        }else if(trab.equals("PRO")){
                 trabajo.setSelectedItem("Programador");;
-        }else if(trab=="ECN"){
+        }else if(trab.equals("ECN")){
                 trabajo.setSelectedItem("Economista");;
-        }else if(trab=="CAJ"){
+        }else if(trab.equals("CAJ")){
                 trabajo.setSelectedItem("Cajero");;
-        }else if(trab=="REP"){
+        }else if(trab.equals("REP")){
                 trabajo.setSelectedItem("Reponedor");;
         }
-        if(cont=="TMP"){
+        if(cont.equals("TMP")){
                 contrato.setSelectedItem("Temporal");
         }
-        if(segu=="INTSG"){
+        if(segu.equals("INTSG")){
                 seguro.setSelectedItem("INTERSEGURO");
-        }else if(segu=="LPOST"){
+        }else if(segu.equals("LPOST")){
                 seguro.setSelectedItem("LA POSITIVA");
-        }else if(segu=="RMCSG"){
+        }else if(segu.equals("RMCSG")){
                 seguro.setSelectedItem("RIMAC SEGUROS");
         }
         if(pru==1){
@@ -287,7 +283,7 @@ public class MetodosSQL {
     public void cambiarEmpleado(int dni,String nombre,String apellido,String sexo,
             int celular,String direccion,String categoria,int sueldo,
             String nacimiento,JComboBox puesto,JComboBox area,JComboBox trabajo,
-            JComboBox contrato,JComboBox seguro,JComboBox prueba){
+            JComboBox contrato,JComboBox seguro,JComboBox prueba,String contraseña){
         if(puesto.getSelectedItem().equals("Director Ejecutivo")){
                 pues="CEO";
         }else if(puesto.getSelectedItem().equals("Director de Operaciones")){
@@ -339,7 +335,7 @@ public class MetodosSQL {
         sentencia_mostrar=("UPDATE EMPLEADO SET nombre=?,apellido=?,correo=?,"
                 + "sexo=?,celular=?,direccion=?,categorial_laboral=?,sueldo=?,fecha_nac=?,"
                 + "puesto_id=?,area_id=?,trabajo_id=?,contrato_id=?,seguro_id=?,prueba_id=?,"
-                + "WHERE dni=?");
+                + "contraseña=? WHERE dni=?");
         try {
             conexion=ConexionBD.conectarBaseDatos();
             sentencia_preparada=conexion.prepareStatement(sentencia_mostrar);
@@ -358,7 +354,8 @@ public class MetodosSQL {
             sentencia_preparada.setString(13,cont);
             sentencia_preparada.setString(14,segu);
             sentencia_preparada.setInt(15,pru);
-            sentencia_preparada.setInt(16,dni);
+            sentencia_preparada.setString(16, contraseña);
+            sentencia_preparada.setInt(17,dni);
             sentencia_preparada.execute();
             sentencia_preparada.close();
         } catch (Exception e) {
@@ -418,6 +415,41 @@ public class MetodosSQL {
     }
     public void eliminarEmpleado(String nombre){
         sentencia_mostrar=("DELETE FROM EMPLEADO WHERE NOMBRE || ' ' ||APELLIDO='"+nombre+"'");
+        try {
+            conexion=ConexionBD.conectarBaseDatos();
+            sentencia_preparada=conexion.prepareStatement(sentencia_mostrar);
+            sentencia_preparada.execute();
+            sentencia_preparada.close();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    //*******************************PLSQL*****************************
+    public void cambioArea(){
+        sentencia_mostrar=("CREATE SEQUENCE CAMBIO_SEQUENCE --Crea valores desde 1 a mas\n" +
+            "INCREMENT BY 1\n" +
+            "START WITH 1 ORDER;\n" +
+            "\n" +
+            "CREATE OR REPLACE TRIGGER INDEX_CAMBIOS\n" +
+            "/*intercepta el insert a la tabla area log\n" +
+            "y reemplaza el log_id por la sequencia cambio_sequence*/\n" +
+            "BEFORE INSERT ON AREA_LOG \n" +
+            "FOR EACH ROW \n" +
+            "BEGIN\n" +
+            "  :NEW.LOG_ID:=CAMBIO_SEQUENCE.NEXTVAL;\n" +
+            "END;\n" +
+            "\n" +
+            "CREATE OR REPLACE TRIGGER CAMBIO_AREA\n" +
+            "/*Cuando se actualiza el area id se inserta un log con el cambio \n" +
+            "y un motivo default*/\n" +
+            "AFTER UPDATE ON EMPLEADO\n" +
+            "FOR EACH ROW\n" +
+            "BEGIN\n" +
+            "    CASE\n" +
+            "        WHEN UPDATING('AREA_ID') THEN --El 0 dentro del insert sera reemplazado por INDEX_CAMBIOS.\n" +
+            "            INSERT INTO AREA_LOG VALUES(:OLD.DNI,0,SYSDATE,:OLD.AREA_ID,:NEW.AREA_ID,'DEFAULT');\n" +
+            "    END CASE;\n" +
+            "END;");
         try {
             conexion=ConexionBD.conectarBaseDatos();
             sentencia_preparada=conexion.prepareStatement(sentencia_mostrar);

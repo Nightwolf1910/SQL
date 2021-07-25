@@ -19,8 +19,8 @@ public class EditarEmpleado extends javax.swing.JFrame {
     /**
      * Creates new form NuevoEmpleado
      */
-    ConexionBD coneccion;
-    MetodosSQL met;
+    ConexionBD coneccion=new ConexionBD();
+    MetodosSQL met=new MetodosSQL();
     public EditarEmpleado() {
         initComponents();
         this.setLocationRelativeTo(this);
@@ -73,6 +73,8 @@ public class EditarEmpleado extends javax.swing.JFrame {
         bEditar1 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jnombreCom = new javax.swing.JTextField();
+        jContraseña = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,7 +110,7 @@ public class EditarEmpleado extends javax.swing.JFrame {
                 jDniActionPerformed(evt);
             }
         });
-        getContentPane().add(jDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 117, -1));
+        getContentPane().add(jDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 117, -1));
 
         jCelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +131,7 @@ public class EditarEmpleado extends javax.swing.JFrame {
                 jApellidoActionPerformed(evt);
             }
         });
-        getContentPane().add(jApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 154, -1));
+        getContentPane().add(jApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 154, -1));
 
         buttonGroup1.add(rbHombre);
         rbHombre.setText("Hombre");
@@ -144,10 +146,10 @@ public class EditarEmpleado extends javax.swing.JFrame {
         getContentPane().add(dcNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 168, -1));
 
         jLabel9.setText("Seguro:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 55, 33));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, 55, 33));
 
         cbSeguro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INTERSEGURO", "LA POSITIVA", "RIMAC SEGUROS" }));
-        getContentPane().add(cbSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 179, -1));
+        getContentPane().add(cbSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 200, -1));
 
         jLabel10.setText("Puesto:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 55, 33));
@@ -156,10 +158,10 @@ public class EditarEmpleado extends javax.swing.JFrame {
         getContentPane().add(cbPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 197, -1));
 
         jLabel11.setText("Trabajo:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 55, 33));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 55, 33));
 
         cbTrabajo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Limpidador", "Tecnico", "Programador", "Economista", "Cajero", "Reponedor" }));
-        getContentPane().add(cbTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 179, -1));
+        getContentPane().add(cbTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 197, -1));
 
         jLabel12.setText("Contrato:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 55, 33));
@@ -168,10 +170,10 @@ public class EditarEmpleado extends javax.swing.JFrame {
         getContentPane().add(cbContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 197, -1));
 
         jLabel13.setText("Prueba:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 55, 33));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 55, 33));
 
         cbPrueba.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VIRTUAL" }));
-        getContentPane().add(cbPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 179, -1));
+        getContentPane().add(cbPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 200, -1));
 
         jDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,10 +190,10 @@ public class EditarEmpleado extends javax.swing.JFrame {
                 jCategoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(jCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 117, -1));
+        getContentPane().add(jCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 117, -1));
 
         jLabel15.setText("Categoria laboral:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, 33));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, 33));
 
         jSueldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +230,16 @@ public class EditarEmpleado extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jnombreCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 180, -1));
+
+        jContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jContraseñaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, 117, -1));
+
+        jLabel19.setText("Contraseña:");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, 33));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/15-Presentation-Background-Examples37.png"))); // NOI18N
         jLabel17.setText("jLabel17");
@@ -278,7 +290,7 @@ public class EditarEmpleado extends javax.swing.JFrame {
                     jApellido.getText(),sexo, Integer.parseInt(jCelular.getText()),
                     jDireccion.getText(), jCategoria.getText(),Integer.parseInt(jSueldo.getText()),
                     formato.format(dcNacimiento.getDate()), cbPuesto, cbArea, cbTrabajo, 
-                    cbContrato, cbSeguro, cbPrueba);
+                    cbContrato, cbSeguro, cbPrueba,jContraseña.getText());
                 this.dispose();
             }catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -295,10 +307,14 @@ public class EditarEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_bEditar1ActionPerformed
 
     private void jnombreComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnombreComActionPerformed
-        met.mostrarEmpleado(jnombreCom.getText(), jDni, jNombre, jApellido, rbFemenino, 
+        met.mostrarEmpleado(jnombreCom.getText(), jDni, jNombre, jApellido,rbHombre,
                 rbFemenino, jCelular, jDireccion, jCategoria, jSueldo, dcNacimiento, 
-                cbPuesto, cbArea, cbTrabajo, cbContrato, cbSeguro, cbPrueba);
+                cbPuesto, cbArea, cbTrabajo, cbContrato, cbSeguro, cbPrueba,jContraseña);
     }//GEN-LAST:event_jnombreComActionPerformed
+
+    private void jContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jContraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,6 +366,7 @@ public class EditarEmpleado extends javax.swing.JFrame {
     private javax.swing.JTextField jApellido;
     private javax.swing.JTextField jCategoria;
     private javax.swing.JTextField jCelular;
+    private javax.swing.JTextField jContraseña;
     private javax.swing.JTextField jDireccion;
     private javax.swing.JTextField jDni;
     private javax.swing.JLabel jLabel1;
@@ -362,6 +379,7 @@ public class EditarEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
